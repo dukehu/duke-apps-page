@@ -92,13 +92,9 @@ export default {
     height: calc(100vh);
     background-color:#f5f7f9;
 }
-.ivu-card-head p, .ivu-card-head-inner {
-    line-height: 50px;
-    height: 50px;
-}
 .vxe-input {
     font-size: 17px;
     height: 43px;
-    width: 350px;
+    width: 280px;
 }
 </style>

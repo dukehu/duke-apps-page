@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
   <div style="height: 100%">
-    <DTable
+    <Table
         :ref="tableProps.ref"
         :table-id="tableProps.tableId"
         :service-id="tableProps.serviceId"
@@ -13,7 +13,7 @@
         :table-config="tableProps.tableConfig"
         :option-row="tableProps.optionRow"
         :tree-table="tableProps.treeTable">
-    </DTable>
+    </Table>
     <Edit v-if="editDialogVisable" :visible.sync="editDialogVisable" :resource-parent-id="leftTreeCurNode.id" />
     <ChooseOperationCode v-if="chooseOperatioCodeDialogVisible" :visible.sync="chooseOperatioCodeDialogVisible" />
   </div>
@@ -105,11 +105,6 @@ export default {
     },
     // 新增资源
     doAdd () {
-      this.leftTreeCurNode = this.$refs[this.leftTreeProps.ref].getSelected()
-      if (!this.leftTreeCurNode) {
-        this.$XModal.message({ message: `请选择左侧树`, status: 'warning' })
-        return
-      }
       this.editDialogVisable = true
     },
     doModify () {

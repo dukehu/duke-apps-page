@@ -1,7 +1,9 @@
-import DTable from './table/Table'
+import Table from './table/Table'
+import Dialog from './dialog/Dialog'
 
 const components = {
-  DTable
+  Table,
+  Dialog
 }
 
 const install = function (Vue) {

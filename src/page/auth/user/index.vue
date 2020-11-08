@@ -1,5 +1,5 @@
 <template>
-    <DTable
+    <Table
         :ref="tableProps.ref"
         :table-id="tableProps.tableId"
         :service-id="tableProps.serviceId"

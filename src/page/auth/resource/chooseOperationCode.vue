@@ -1,34 +1,31 @@
 <template>
-    <el-dialog
-        width="80%"
-        :visible.sync="dialogVisible"
-        :close-on-click-modal="false"
-        @close="closeHandle"
-        center>
-        <span slot="title" class="dialog-title" style="font-size: 20px; font-weight: 900">
-            操作码授权
-        </span>
+  <Dialog
+    :visible.sync="dialogVisible"
+    title="操作码授权"
+    width="90%"
+    footer="false">
+      <template v-slot:content>
         <div style="text-align:center; height: 400px">
           <Split v-model="split">
             <div slot="left" style="height: 350px">
-              <DTable
-                  :ref="unChoosedOperationTableProps.ref"
-                  :table-id="unChoosedOperationTableProps.tableId"
-                  :service-id="unChoosedOperationTableProps.serviceId"
-                  :path="unChoosedOperationTableProps.path"
-                  :buttons="unChoosedOperationTableProps.buttons"
-                  :request-params="requestParams"
-                  :toolbar-config="{}">
+              <Table
+                :ref="unChoosedOperationTableProps.ref"
+                :table-id="unChoosedOperationTableProps.tableId"
+                :service-id="unChoosedOperationTableProps.serviceId"
+                :path="unChoosedOperationTableProps.path"
+                :buttons="unChoosedOperationTableProps.buttons"
+                :request-params="requestParams"
+                :toolbar-config="{}">
                   <template v-slot:toolbar>
                     <RadioGroup v-model="requestMethod" @on-change="requestMethodChange" type="button">
-                      <Radio label="GET"></Radio>
-                      <Radio label="POST"></Radio>
-                      <Radio label="PUT"></Radio>
-                      <Radio label="DELETE"></Radio>
+                    <Radio label="GET"></Radio>
+                    <Radio label="POST"></Radio>
+                    <Radio label="PUT"></Radio>
+                    <Radio label="DELETE"></Radio>
                     </RadioGroup>
                     <Input suffix="ios-search" placeholder="Enter PATH" style="width: 50%"/>
                   </template>
-              </DTable>
+              </Table>
             </div>
             <div slot="right" style="height: 340px">
               <LeftTree
@@ -40,7 +37,8 @@
             </div>
           </Split>
         </div>
-    </el-dialog>
+      </template>
+  </Dialog>
 </template>
 
 <script>
@@ -87,25 +85,23 @@ export default {
       this.requestParams = {
         requestMethod: this.requestMethod
       }
-    },
-    closeHandle () {
-      this.$emit('update:visible', this.dialogVisible)
     }
   },
   created () {
   },
   mounted () {
-
+  },
+  watch: {
+    dialogVisible: {
+      handler (newvalue) {
+        this.$emit('update:visible', newvalue)
+      },
+      immediate: true,
+      deep: true
+    }
   }
 }
 </script>
 
 <style>
-.v-modal {
-    display: none;
-}
-.el-dialog__header {
-  border-bottom: 1px solid #71626230;
-  text-align: left;
-}
 </style>

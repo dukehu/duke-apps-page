@@ -1,14 +1,19 @@
 <template>
-    <DTable
+  <div style="height: 100%">
+    <Table
         :ref="tableProps.ref"
         :table-id="tableProps.tableId"
         :service-id="tableProps.serviceId"
         :path="tableProps.path"
         :buttons="tableProps.buttons" />
+    <Edit v-if="editRoleDialogVisible" :visible.sync="editRoleDialogVisible" />
+  </div>
 </template>
 
 <script>
+import Edit from './edit'
 export default {
+  components: {Edit},
   data () {
     return {
       tableProps: {
@@ -22,14 +27,17 @@ export default {
           { code: 'modify', name: '修改', callback: this.doModify, status: 'info' },
           { code: 'delete', name: '删除', callback: this.doDel, status: 'danger' }
         ]
-      }
+      },
+      editRoleDialogVisible: false
     }
   },
   methods: {
     doAdd () {
+      this.editRoleDialogVisible = true
       this.$XModal.message({ message: `新增`, status: 'success' })
     },
     doModify () {
+      this.editRoleDialogVisible = true
       this.$XModal.message({ message: `修改`, status: 'success' })
     },
     doDel () {
